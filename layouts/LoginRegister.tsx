@@ -34,12 +34,6 @@ const LoginRegisterLayout: React.FunctionComponent<MyProps> = (props) => {
               <Image src={marapoolLogo} alt="Marapool Logo" layout="intrinsic" loading="eager" />
             </Box>
             {props.children}
-            <Box textAlign="right">
-              <Link fontSize="xs" color="blue.300">Forgot your password?</Link>
-            </Box>
-            <Box pt="10">
-              <Button colorScheme="blue" w="100%">Sign In</Button>
-            </Box>
           </Box>
           <Text fontSize="xs" pt="4">
             Do you have any questions? <Link color="blue.500">Contact Us</Link>
