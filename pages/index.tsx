@@ -1,10 +1,26 @@
-import { Heading, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { Box, Heading, Text } from '@chakra-ui/react'
 import Head from 'next/head'
-import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCredentials } from '../components/Login/authSlice'
 import { RootState } from '../store'
 
 export default function Home() {
   const state = useSelector((state) => state) as RootState
+  const dispatch = useDispatch()
+  const { push } = useRouter()
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user_data');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      dispatch(setCredentials(foundUser));
+    } else {
+      push('/login')
+    }
+  }, [dispatch, push]);
+
   return (
     <div>
       <Head>
@@ -13,8 +29,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Heading>Home Page</Heading>
-      <Text>Logged in user: {state.auth.name}</Text>
-      <pre>{JSON.stringify(state.auth)}</pre>
+      {state.auth.user ? (
+        <Box padding="6" border="1" borderRadius="lg" borderColor="gray.500">
+          <Text>Logged in user:</Text>
+          <pre>User: {state.auth.user}</pre>
+          <pre>ID: {state.auth.id}</pre>
+          <pre>Email: {state.auth.email}</pre>
+          <pre>Name: {state.auth.name}</pre>
+          <pre>Phone: {state.auth.phone}</pre>
+        </Box>
+      ) : <Text>Loading...</Text>}
     </div>
   )
 }

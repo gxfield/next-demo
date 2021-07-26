@@ -45,8 +45,8 @@ export default function Login() {
 
   const attemptLogin = async () => {
     try {
-      console.log(process.env)
       const user = await login(formState).unwrap()
+      localStorage.setItem('user_data', JSON.stringify(user))
       dispatch(setCredentials(user))
       push('/')
     } catch (err) {

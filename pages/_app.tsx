@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
+import { setCredentials } from '../components/Login/authSlice'
 
 import { store } from '../store'
 
