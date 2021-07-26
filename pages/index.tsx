@@ -3,7 +3,7 @@ import { Box, Heading, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCredentials } from '../components/Login/authSlice'
+import { setCredentials } from '../store/authSlice'
 import { RootState } from '../store'
 
 export default function Home() {

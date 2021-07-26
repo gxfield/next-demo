@@ -13,7 +13,7 @@ import {
 import { EmailIcon } from '@chakra-ui/icons'
 
 import { useDispatch } from 'react-redux'
-import { setCredentials } from './authSlice'
+import { setCredentials } from '../../store/authSlice'
 import { useLoginMutation } from '../../services/auth'
 import type { LoginRequest } from '../../services/auth'
 
@@ -94,7 +94,7 @@ export default function Login() {
           {isLoading ? 'Loading...' : 'Sign In'}
         </Button>
       </Box>
-      {error && (<Box pt="10">
+      {error && (<Box pt="6" textAlign="center">
         <Text color="red">Login failed. 4 attempts remaining.</Text>
       </Box>)}
     </>
